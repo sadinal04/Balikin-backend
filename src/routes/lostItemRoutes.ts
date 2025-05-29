@@ -1,5 +1,5 @@
 import express from "express";
-import { addLostItem, claimLostItem, getLostItems } from "../controllers/lostItemController";
+import { addLostItem, claimLostItem, getLostItemDetail, getLostItems } from "../controllers/lostItemController";
 import { verifyToken } from "../middlewares/authMiddleware";
 
 const router = express.Router();
@@ -12,5 +12,9 @@ router.get("/", verifyToken, getLostItems);
 
 // Endpoint untuk mengubah status barang menjadi 'claimed'
 router.patch("/claim/:id", verifyToken, claimLostItem);
+
+// Endpoint untuk mendapatkan detail barang hilang berdasarkan ID
+router.get("/:id", verifyToken, getLostItemDetail);
+
 
 export default router;  // Pastikan menggunakan 'export default' di sini

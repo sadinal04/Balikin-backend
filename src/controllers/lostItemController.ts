@@ -61,3 +61,20 @@ export const claimLostItem = async (req: Request, res: Response, next: NextFunct
     next(error); // Melanjutkan error handling
   }
 };
+
+// Fungsi untuk mendapatkan detail barang hilang berdasarkan ID
+export const getLostItemDetail = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  const itemId = req.params.id;
+
+  try {
+    const item = await LostItem.findById(itemId);  // Mencari barang berdasarkan ID
+    if (!item) {
+      res.status(404).json({ message: "Barang tidak ditemukan" });
+      return;
+    }
+
+    res.status(200).json(item);  // Mengirimkan detail barang hilang
+  } catch (error) {
+    next(error); // Melanjutkan error handling
+  }
+};
