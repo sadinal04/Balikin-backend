@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 import authRoutes from "./routes/authRoutes";
+import lostItemRoutes from "./routes/lostItemRoutes";
 
 dotenv.config();
 
@@ -15,6 +16,9 @@ app.use(express.json());
 
 // Daftarkan route auth
 app.use("/api/auth", authRoutes);
+
+// Daftarkan route barang hilang
+app.use("/api/lost-items", lostItemRoutes);
 
 // Route test
 app.get("/", (req, res) => {
