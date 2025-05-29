@@ -23,16 +23,14 @@ app.get("/", (req, res) => {
 
 // Koneksi MongoDB
 mongoose.connect(process.env.MONGO_URI || "", {})
-  .then(() => console.log("MongoDB connected"))
-  .catch((err) => console.error(err));
+  .then(() => {
+    console.log("MongoDB connected");
 
-// Error handler middleware (harus di paling bawah)
-app.use((err: any, req: Request, res: Response, next: NextFunction) => {
-  console.error(err.stack);
-  res.status(500).json({ message: "Internal server error", error: err.message || err });
-});
-
-// Jalankan server
-app.listen(port, () => {
-  console.log(`Server running on http://localhost:${port}`);
-});
+    // Jalankan server hanya setelah koneksi MongoDB sukses
+    app.listen(port, () => {
+      console.log(`Server running on http://localhost:${port}`);
+    });
+  })
+  .catch((err) => {
+    console.error("MongoDB connection error:", err);
+  });
