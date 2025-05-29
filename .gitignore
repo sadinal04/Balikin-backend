@@ -1,0 +1,45 @@
+# node_modules (wajib di-ignore)
+node_modules/
+
+# logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# dotenv files
+.env
+.env.*.local
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# editor/IDE
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# production build (jika ada)
+dist/
+build/
+
+# coverage test result
+coverage/
+
+# temp
+tmp/
+temp/
+
+# PM2 logs (jika pakai PM2)
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Optional: jika pakai SQLite
+*.sqlite
+*.sqlite3
